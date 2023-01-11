@@ -1,0 +1,16 @@
+
+entity Serveur {
+	nomHebergeur String,
+    nomServeur String,
+    arch String,
+    cpuNombre Long,
+    ram Long,
+    maxSire Long,
+    type String,
+    priceMonthly Long,
+    hourlyPrice Long
+    ipv6 Boolean,
+    bandWidthInternal Long,
+    bandWidthExternal Long
+}
+

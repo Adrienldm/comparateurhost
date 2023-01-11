@@ -1,0 +1,35 @@
+{
+  "archiCloudApp": {
+    "serveur": {
+      "home": {
+        "title": "Serveurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Serveur",
+        "createOrEditLabel": "Créer ou éditer un Serveur",
+        "notFound": "Aucun Serveur trouvé"
+      },
+      "created": "Un nouveau Serveur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Serveur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Serveur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Serveur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Serveur"
+      },
+      "id": "ID",
+      "nomHebergeur": "Nom Hebergeur",
+      "nomServeur": "Nom Serveur",
+      "arch": "Arch",
+      "cpuNombre": "Cpu Nombre",
+      "ram": "Ram",
+      "maxSire": "Max Sire",
+      "type": "Type",
+      "priceMonthly": "Price Monthly",
+      "hourlyPrice": "Hourly Price",
+      "ipv6": "Ipv 6",
+      "bandWidthInternal": "Band Width Internal",
+      "bandWidthExternal": "Band Width External"
+    }
+  }
+}

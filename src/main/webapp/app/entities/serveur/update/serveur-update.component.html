@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-serveur-heading" data-cy="ServeurCreateUpdateHeading" jhiTranslate="archiCloudApp.serveur.home.createOrEditLabel">
+        Créer ou éditer un Serveur
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.nomHebergeur" for="field_nomHebergeur">Nom Hebergeur</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomHebergeur"
+            id="field_nomHebergeur"
+            data-cy="nomHebergeur"
+            formControlName="nomHebergeur"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.nomServeur" for="field_nomServeur">Nom Serveur</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomServeur"
+            id="field_nomServeur"
+            data-cy="nomServeur"
+            formControlName="nomServeur"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.arch" for="field_arch">Arch</label>
+          <input type="text" class="form-control" name="arch" id="field_arch" data-cy="arch" formControlName="arch" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.cpuNombre" for="field_cpuNombre">Cpu Nombre</label>
+          <input type="number" class="form-control" name="cpuNombre" id="field_cpuNombre" data-cy="cpuNombre" formControlName="cpuNombre" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.ram" for="field_ram">Ram</label>
+          <input type="number" class="form-control" name="ram" id="field_ram" data-cy="ram" formControlName="ram" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.maxSire" for="field_maxSire">Max Sire</label>
+          <input type="number" class="form-control" name="maxSire" id="field_maxSire" data-cy="maxSire" formControlName="maxSire" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.type" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.priceMonthly" for="field_priceMonthly">Price Monthly</label>
+          <input
+            type="number"
+            class="form-control"
+            name="priceMonthly"
+            id="field_priceMonthly"
+            data-cy="priceMonthly"
+            formControlName="priceMonthly"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.hourlyPrice" for="field_hourlyPrice">Hourly Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="hourlyPrice"
+            id="field_hourlyPrice"
+            data-cy="hourlyPrice"
+            formControlName="hourlyPrice"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.ipv6" for="field_ipv6">Ipv 6</label>
+          <input type="checkbox" class="form-check" name="ipv6" id="field_ipv6" data-cy="ipv6" formControlName="ipv6" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.bandWidthInternal" for="field_bandWidthInternal"
+            >Band Width Internal</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="bandWidthInternal"
+            id="field_bandWidthInternal"
+            data-cy="bandWidthInternal"
+            formControlName="bandWidthInternal"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="archiCloudApp.serveur.bandWidthExternal" for="field_bandWidthExternal"
+            >Band Width External</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="bandWidthExternal"
+            id="field_bandWidthExternal"
+            data-cy="bandWidthExternal"
+            formControlName="bandWidthExternal"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

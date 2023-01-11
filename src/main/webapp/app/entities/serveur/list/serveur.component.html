@@ -1,0 +1,165 @@
+<div>
+  <h2 id="page-heading" data-cy="ServeurHeading">
+    <span jhiTranslate="archiCloudApp.serveur.home.title">Serveurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="archiCloudApp.serveur.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-serveur"
+        [routerLink]="['/serveur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="archiCloudApp.serveur.home.createLabel"> Créer un nouveau Serveur </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="serveurs?.length === 0">
+    <span jhiTranslate="archiCloudApp.serveur.home.notFound">Aucun Serveur trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="serveurs && serveurs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomHebergeur">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.nomHebergeur">Nom Hebergeur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nomServeur">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.nomServeur">Nom Serveur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="arch">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.arch">Arch</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cpuNombre">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.cpuNombre">Cpu Nombre</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ram">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.ram">Ram</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="maxSire">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.maxSire">Max Sire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.type">Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="priceMonthly">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.priceMonthly">Price Monthly</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="hourlyPrice">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.hourlyPrice">Hourly Price</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ipv6">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.ipv6">Ipv 6</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bandWidthInternal">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.bandWidthInternal">Band Width Internal</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bandWidthExternal">
+            <div class="d-flex">
+              <span jhiTranslate="archiCloudApp.serveur.bandWidthExternal">Band Width External</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let serveur of serveurs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/serveur', serveur.id, 'view']">{{ serveur.id }}</a>
+          </td>
+          <td>{{ serveur.nomHebergeur }}</td>
+          <td>{{ serveur.nomServeur }}</td>
+          <td>{{ serveur.arch }}</td>
+          <td>{{ serveur.cpuNombre }}</td>
+          <td>{{ serveur.ram }}</td>
+          <td>{{ serveur.maxSire }}</td>
+          <td>{{ serveur.type }}</td>
+          <td>{{ serveur.priceMonthly }}</td>
+          <td>{{ serveur.hourlyPrice }}</td>
+          <td>{{ serveur.ipv6 }}</td>
+          <td>{{ serveur.bandWidthInternal }}</td>
+          <td>{{ serveur.bandWidthExternal }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/serveur', serveur.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/serveur', serveur.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(serveur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

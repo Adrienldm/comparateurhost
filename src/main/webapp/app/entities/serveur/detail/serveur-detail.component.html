@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="serveur">
+      <h2 data-cy="serveurDetailsHeading"><span jhiTranslate="archiCloudApp.serveur.detail.title">Serveur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ serveur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.nomHebergeur">Nom Hebergeur</span></dt>
+        <dd>
+          <span>{{ serveur.nomHebergeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.nomServeur">Nom Serveur</span></dt>
+        <dd>
+          <span>{{ serveur.nomServeur }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.arch">Arch</span></dt>
+        <dd>
+          <span>{{ serveur.arch }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.cpuNombre">Cpu Nombre</span></dt>
+        <dd>
+          <span>{{ serveur.cpuNombre }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.ram">Ram</span></dt>
+        <dd>
+          <span>{{ serveur.ram }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.maxSire">Max Sire</span></dt>
+        <dd>
+          <span>{{ serveur.maxSire }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.type">Type</span></dt>
+        <dd>
+          <span>{{ serveur.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.priceMonthly">Price Monthly</span></dt>
+        <dd>
+          <span>{{ serveur.priceMonthly }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.hourlyPrice">Hourly Price</span></dt>
+        <dd>
+          <span>{{ serveur.hourlyPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.ipv6">Ipv 6</span></dt>
+        <dd>
+          <span>{{ serveur.ipv6 }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.bandWidthInternal">Band Width Internal</span></dt>
+        <dd>
+          <span>{{ serveur.bandWidthInternal }}</span>
+        </dd>
+        <dt><span jhiTranslate="archiCloudApp.serveur.bandWidthExternal">Band Width External</span></dt>
+        <dd>
+          <span>{{ serveur.bandWidthExternal }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/serveur', serveur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

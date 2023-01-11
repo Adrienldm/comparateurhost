@@ -1,0 +1,64 @@
+{
+  "applications": "*",
+  "changelogDate": "20230110142548",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "serveur",
+  "fields": [
+    {
+      "fieldName": "nomHebergeur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomServeur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "arch",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cpuNombre",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "ram",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "maxSire",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "priceMonthly",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "hourlyPrice",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "ipv6",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "bandWidthInternal",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "bandWidthExternal",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Serveur",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

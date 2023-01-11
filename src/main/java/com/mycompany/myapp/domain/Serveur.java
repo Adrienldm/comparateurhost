@@ -14,8 +14,8 @@ public class Serveur implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_serveurs")
+    @SequenceGenerator(name = "seq_serveurs", sequenceName = "seq_serveurs", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 

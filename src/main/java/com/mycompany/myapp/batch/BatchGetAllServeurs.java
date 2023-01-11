@@ -17,6 +17,12 @@ import org.springframework.web.client.RestTemplate;
 @EnableScheduling
 public class BatchGetAllServeurs {
 
+    private static final String NETWORK = "network";
+    private static final String HOURLY_PRICE = "hourly_price";
+    private static final String MONTHLY_PRICE = "monthly_price";
+    private static final String VOLUMES_CONSTRAINT = "volumes_constraint";
+    private static final String TYPE = "type";
+    private static final String MAX_SIZE = "max_size";
     private static final String RAM = "ram";
     private static final String NCPUS = "ncpus";
     private static final String ARCH = "arch";
@@ -47,6 +53,18 @@ public class BatchGetAllServeurs {
             }
             if (obj.containsKey(RAM)) {
                 serv.setRam((Long) obj.get(RAM));
+            }
+            if (obj.containsKey(VOLUMES_CONSTRAINT) && ((JSONObject) obj.get(VOLUMES_CONSTRAINT)).containsKey(MAX_SIZE)) {
+                serv.setMaxSire((Long) ((JSONObject) obj.get(VOLUMES_CONSTRAINT)).get(MAX_SIZE));
+            }
+            if (obj.containsKey(TYPE)) {
+                serv.setType((String) obj.get(TYPE));
+            }
+            if (obj.containsKey(MONTHLY_PRICE)) {
+                serv.setPriceMonthly((Long) obj.get(MONTHLY_PRICE));
+            }
+            if (obj.containsKey(HOURLY_PRICE)) {
+                serv.setHourlyPrice((Long) obj.get(HOURLY_PRICE));
             }
 
             System.out.println(serv.toString());

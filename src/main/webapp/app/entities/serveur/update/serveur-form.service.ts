@@ -23,7 +23,7 @@ type ServeurFormGroupContent = {
   arch: FormControl<IServeur['arch']>;
   cpuNombre: FormControl<IServeur['cpuNombre']>;
   ram: FormControl<IServeur['ram']>;
-  maxSire: FormControl<IServeur['maxSire']>;
+  maxSize: FormControl<IServeur['maxSize']>;
   type: FormControl<IServeur['type']>;
   priceMonthly: FormControl<IServeur['priceMonthly']>;
   hourlyPrice: FormControl<IServeur['hourlyPrice']>;
@@ -54,7 +54,7 @@ export class ServeurFormService {
       arch: new FormControl(serveurRawValue.arch),
       cpuNombre: new FormControl(serveurRawValue.cpuNombre),
       ram: new FormControl(serveurRawValue.ram),
-      maxSire: new FormControl(serveurRawValue.maxSire),
+      maxSize: new FormControl(serveurRawValue.maxSize),
       type: new FormControl(serveurRawValue.type),
       priceMonthly: new FormControl(serveurRawValue.priceMonthly),
       hourlyPrice: new FormControl(serveurRawValue.hourlyPrice),

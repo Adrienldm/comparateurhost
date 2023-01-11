@@ -5,7 +5,7 @@ export interface IServeur {
   arch?: string | null;
   cpuNombre?: number | null;
   ram?: number | null;
-  maxSire?: number | null;
+  maxSize?: number | null;
   type?: string | null;
   priceMonthly?: number | null;
   hourlyPrice?: number | null;

@@ -14,8 +14,8 @@ public class Serveur implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_serveurs")
-    @SequenceGenerator(name = "seq_serveurs", sequenceName = "seq_serveurs", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     @Column(name = "id")
     private Long id;
 
@@ -34,17 +34,17 @@ public class Serveur implements Serializable {
     @Column(name = "ram")
     private Long ram;
 
-    @Column(name = "max_sire")
-    private Long maxSire;
+    @Column(name = "max_size")
+    private Long maxSize;
 
     @Column(name = "type")
     private String type;
 
     @Column(name = "price_monthly")
-    private Long priceMonthly;
+    private Double priceMonthly;
 
     @Column(name = "hourly_price")
-    private Long hourlyPrice;
+    private Double hourlyPrice;
 
     @Column(name = "ipv_6")
     private Boolean ipv6;
@@ -135,17 +135,17 @@ public class Serveur implements Serializable {
         this.ram = ram;
     }
 
-    public Long getMaxSire() {
-        return this.maxSire;
+    public Long getMaxSize() {
+        return this.maxSize;
     }
 
-    public Serveur maxSire(Long maxSire) {
-        this.setMaxSire(maxSire);
+    public Serveur maxSize(Long maxSize) {
+        this.setMaxSize(maxSize);
         return this;
     }
 
-    public void setMaxSire(Long maxSire) {
-        this.maxSire = maxSire;
+    public void setMaxSize(Long maxSize) {
+        this.maxSize = maxSize;
     }
 
     public String getType() {
@@ -161,29 +161,29 @@ public class Serveur implements Serializable {
         this.type = type;
     }
 
-    public Long getPriceMonthly() {
+    public Double getPriceMonthly() {
         return this.priceMonthly;
     }
 
-    public Serveur priceMonthly(Long priceMonthly) {
+    public Serveur priceMonthly(Double priceMonthly) {
         this.setPriceMonthly(priceMonthly);
         return this;
     }
 
-    public void setPriceMonthly(Long priceMonthly) {
+    public void setPriceMonthly(Double priceMonthly) {
         this.priceMonthly = priceMonthly;
     }
 
-    public Long getHourlyPrice() {
+    public Double getHourlyPrice() {
         return this.hourlyPrice;
     }
 
-    public Serveur hourlyPrice(Long hourlyPrice) {
+    public Serveur hourlyPrice(Double hourlyPrice) {
         this.setHourlyPrice(hourlyPrice);
         return this;
     }
 
-    public void setHourlyPrice(Long hourlyPrice) {
+    public void setHourlyPrice(Double hourlyPrice) {
         this.hourlyPrice = hourlyPrice;
     }
 
@@ -255,7 +255,7 @@ public class Serveur implements Serializable {
             ", arch='" + getArch() + "'" +
             ", cpuNombre=" + getCpuNombre() +
             ", ram=" + getRam() +
-            ", maxSire=" + getMaxSire() +
+            ", maxSize=" + getMaxSize() +
             ", type='" + getType() + "'" +
             ", priceMonthly=" + getPriceMonthly() +
             ", hourlyPrice=" + getHourlyPrice() +

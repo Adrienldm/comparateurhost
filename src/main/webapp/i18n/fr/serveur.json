@@ -23,7 +23,7 @@
       "arch": "Arch",
       "cpuNombre": "Cpu Nombre",
       "ram": "Ram",
-      "maxSire": "Max Sire",
+      "maxSize": "Max Size",
       "type": "Type",
       "priceMonthly": "Price Monthly",
       "hourlyPrice": "Hourly Price",

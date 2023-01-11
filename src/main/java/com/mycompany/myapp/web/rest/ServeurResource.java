@@ -136,8 +136,8 @@ public class ServeurResource {
                 if (serveur.getRam() != null) {
                     existingServeur.setRam(serveur.getRam());
                 }
-                if (serveur.getMaxSire() != null) {
-                    existingServeur.setMaxSire(serveur.getMaxSire());
+                if (serveur.getMaxSize() != null) {
+                    existingServeur.setMaxSize(serveur.getMaxSize());
                 }
                 if (serveur.getType() != null) {
                     existingServeur.setType(serveur.getType());

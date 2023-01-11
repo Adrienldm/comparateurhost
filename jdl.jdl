@@ -5,10 +5,10 @@ entity Serveur {
     arch String,
     cpuNombre Long,
     ram Long,
-    maxSire Long,
+    maxSize Long,
     type String,
-    priceMonthly Long,
-    hourlyPrice Long
+    priceMonthly Double,
+    hourlyPrice Double
     ipv6 Boolean,
     bandWidthInternal Long,
     bandWidthExternal Long

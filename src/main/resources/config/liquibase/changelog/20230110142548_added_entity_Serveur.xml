@@ -29,16 +29,16 @@
             <column name="ram" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="max_sire" type="bigint">
+            <column name="max_size" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="price_monthly" type="bigint">
+            <column name="price_monthly" type="double">
                 <constraints nullable="true" />
             </column>
-            <column name="hourly_price" type="bigint">
+            <column name="hourly_price" type="double">
                 <constraints nullable="true" />
             </column>
             <column name="ipv_6" type="boolean">
@@ -76,7 +76,7 @@
             <column name="arch" type="string"/>
             <column name="cpu_nombre" type="numeric"/>
             <column name="ram" type="numeric"/>
-            <column name="max_sire" type="numeric"/>
+            <column name="max_size" type="numeric"/>
             <column name="type" type="string"/>
             <column name="price_monthly" type="numeric"/>
             <column name="hourly_price" type="numeric"/>

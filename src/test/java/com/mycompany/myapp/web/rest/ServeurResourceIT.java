@@ -44,17 +44,17 @@ class ServeurResourceIT {
     private static final Long DEFAULT_RAM = 1L;
     private static final Long UPDATED_RAM = 2L;
 
-    private static final Long DEFAULT_MAX_SIRE = 1L;
-    private static final Long UPDATED_MAX_SIRE = 2L;
+    private static final Long DEFAULT_MAX_SIZE = 1L;
+    private static final Long UPDATED_MAX_SIZE = 2L;
 
     private static final String DEFAULT_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_TYPE = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PRICE_MONTHLY = 1L;
-    private static final Long UPDATED_PRICE_MONTHLY = 2L;
+    private static final Double DEFAULT_PRICE_MONTHLY = 1D;
+    private static final Double UPDATED_PRICE_MONTHLY = 2D;
 
-    private static final Long DEFAULT_HOURLY_PRICE = 1L;
-    private static final Long UPDATED_HOURLY_PRICE = 2L;
+    private static final Double DEFAULT_HOURLY_PRICE = 1D;
+    private static final Double UPDATED_HOURLY_PRICE = 2D;
 
     private static final Boolean DEFAULT_IPV_6 = false;
     private static final Boolean UPDATED_IPV_6 = true;
@@ -95,7 +95,7 @@ class ServeurResourceIT {
             .arch(DEFAULT_ARCH)
             .cpuNombre(DEFAULT_CPU_NOMBRE)
             .ram(DEFAULT_RAM)
-            .maxSire(DEFAULT_MAX_SIRE)
+            .maxSize(DEFAULT_MAX_SIZE)
             .type(DEFAULT_TYPE)
             .priceMonthly(DEFAULT_PRICE_MONTHLY)
             .hourlyPrice(DEFAULT_HOURLY_PRICE)
@@ -118,7 +118,7 @@ class ServeurResourceIT {
             .arch(UPDATED_ARCH)
             .cpuNombre(UPDATED_CPU_NOMBRE)
             .ram(UPDATED_RAM)
-            .maxSire(UPDATED_MAX_SIRE)
+            .maxSize(UPDATED_MAX_SIZE)
             .type(UPDATED_TYPE)
             .priceMonthly(UPDATED_PRICE_MONTHLY)
             .hourlyPrice(UPDATED_HOURLY_PRICE)
@@ -151,7 +151,7 @@ class ServeurResourceIT {
         assertThat(testServeur.getArch()).isEqualTo(DEFAULT_ARCH);
         assertThat(testServeur.getCpuNombre()).isEqualTo(DEFAULT_CPU_NOMBRE);
         assertThat(testServeur.getRam()).isEqualTo(DEFAULT_RAM);
-        assertThat(testServeur.getMaxSire()).isEqualTo(DEFAULT_MAX_SIRE);
+        assertThat(testServeur.getMaxSize()).isEqualTo(DEFAULT_MAX_SIZE);
         assertThat(testServeur.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testServeur.getPriceMonthly()).isEqualTo(DEFAULT_PRICE_MONTHLY);
         assertThat(testServeur.getHourlyPrice()).isEqualTo(DEFAULT_HOURLY_PRICE);
@@ -195,10 +195,10 @@ class ServeurResourceIT {
             .andExpect(jsonPath("$.[*].arch").value(hasItem(DEFAULT_ARCH)))
             .andExpect(jsonPath("$.[*].cpuNombre").value(hasItem(DEFAULT_CPU_NOMBRE.intValue())))
             .andExpect(jsonPath("$.[*].ram").value(hasItem(DEFAULT_RAM.intValue())))
-            .andExpect(jsonPath("$.[*].maxSire").value(hasItem(DEFAULT_MAX_SIRE.intValue())))
+            .andExpect(jsonPath("$.[*].maxSize").value(hasItem(DEFAULT_MAX_SIZE.intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
-            .andExpect(jsonPath("$.[*].priceMonthly").value(hasItem(DEFAULT_PRICE_MONTHLY.intValue())))
-            .andExpect(jsonPath("$.[*].hourlyPrice").value(hasItem(DEFAULT_HOURLY_PRICE.intValue())))
+            .andExpect(jsonPath("$.[*].priceMonthly").value(hasItem(DEFAULT_PRICE_MONTHLY.doubleValue())))
+            .andExpect(jsonPath("$.[*].hourlyPrice").value(hasItem(DEFAULT_HOURLY_PRICE.doubleValue())))
             .andExpect(jsonPath("$.[*].ipv6").value(hasItem(DEFAULT_IPV_6.booleanValue())))
             .andExpect(jsonPath("$.[*].bandWidthInternal").value(hasItem(DEFAULT_BAND_WIDTH_INTERNAL.intValue())))
             .andExpect(jsonPath("$.[*].bandWidthExternal").value(hasItem(DEFAULT_BAND_WIDTH_EXTERNAL.intValue())));
@@ -221,10 +221,10 @@ class ServeurResourceIT {
             .andExpect(jsonPath("$.arch").value(DEFAULT_ARCH))
             .andExpect(jsonPath("$.cpuNombre").value(DEFAULT_CPU_NOMBRE.intValue()))
             .andExpect(jsonPath("$.ram").value(DEFAULT_RAM.intValue()))
-            .andExpect(jsonPath("$.maxSire").value(DEFAULT_MAX_SIRE.intValue()))
+            .andExpect(jsonPath("$.maxSize").value(DEFAULT_MAX_SIZE.intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
-            .andExpect(jsonPath("$.priceMonthly").value(DEFAULT_PRICE_MONTHLY.intValue()))
-            .andExpect(jsonPath("$.hourlyPrice").value(DEFAULT_HOURLY_PRICE.intValue()))
+            .andExpect(jsonPath("$.priceMonthly").value(DEFAULT_PRICE_MONTHLY.doubleValue()))
+            .andExpect(jsonPath("$.hourlyPrice").value(DEFAULT_HOURLY_PRICE.doubleValue()))
             .andExpect(jsonPath("$.ipv6").value(DEFAULT_IPV_6.booleanValue()))
             .andExpect(jsonPath("$.bandWidthInternal").value(DEFAULT_BAND_WIDTH_INTERNAL.intValue()))
             .andExpect(jsonPath("$.bandWidthExternal").value(DEFAULT_BAND_WIDTH_EXTERNAL.intValue()));
@@ -255,7 +255,7 @@ class ServeurResourceIT {
             .arch(UPDATED_ARCH)
             .cpuNombre(UPDATED_CPU_NOMBRE)
             .ram(UPDATED_RAM)
-            .maxSire(UPDATED_MAX_SIRE)
+            .maxSize(UPDATED_MAX_SIZE)
             .type(UPDATED_TYPE)
             .priceMonthly(UPDATED_PRICE_MONTHLY)
             .hourlyPrice(UPDATED_HOURLY_PRICE)
@@ -280,7 +280,7 @@ class ServeurResourceIT {
         assertThat(testServeur.getArch()).isEqualTo(UPDATED_ARCH);
         assertThat(testServeur.getCpuNombre()).isEqualTo(UPDATED_CPU_NOMBRE);
         assertThat(testServeur.getRam()).isEqualTo(UPDATED_RAM);
-        assertThat(testServeur.getMaxSire()).isEqualTo(UPDATED_MAX_SIRE);
+        assertThat(testServeur.getMaxSize()).isEqualTo(UPDATED_MAX_SIZE);
         assertThat(testServeur.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testServeur.getPriceMonthly()).isEqualTo(UPDATED_PRICE_MONTHLY);
         assertThat(testServeur.getHourlyPrice()).isEqualTo(UPDATED_HOURLY_PRICE);
@@ -361,7 +361,7 @@ class ServeurResourceIT {
             .nomHebergeur(UPDATED_NOM_HEBERGEUR)
             .nomServeur(UPDATED_NOM_SERVEUR)
             .ram(UPDATED_RAM)
-            .maxSire(UPDATED_MAX_SIRE)
+            .maxSize(UPDATED_MAX_SIZE)
             .bandWidthInternal(UPDATED_BAND_WIDTH_INTERNAL)
             .bandWidthExternal(UPDATED_BAND_WIDTH_EXTERNAL);
 
@@ -382,7 +382,7 @@ class ServeurResourceIT {
         assertThat(testServeur.getArch()).isEqualTo(DEFAULT_ARCH);
         assertThat(testServeur.getCpuNombre()).isEqualTo(DEFAULT_CPU_NOMBRE);
         assertThat(testServeur.getRam()).isEqualTo(UPDATED_RAM);
-        assertThat(testServeur.getMaxSire()).isEqualTo(UPDATED_MAX_SIRE);
+        assertThat(testServeur.getMaxSize()).isEqualTo(UPDATED_MAX_SIZE);
         assertThat(testServeur.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testServeur.getPriceMonthly()).isEqualTo(DEFAULT_PRICE_MONTHLY);
         assertThat(testServeur.getHourlyPrice()).isEqualTo(DEFAULT_HOURLY_PRICE);
@@ -409,7 +409,7 @@ class ServeurResourceIT {
             .arch(UPDATED_ARCH)
             .cpuNombre(UPDATED_CPU_NOMBRE)
             .ram(UPDATED_RAM)
-            .maxSire(UPDATED_MAX_SIRE)
+            .maxSize(UPDATED_MAX_SIZE)
             .type(UPDATED_TYPE)
             .priceMonthly(UPDATED_PRICE_MONTHLY)
             .hourlyPrice(UPDATED_HOURLY_PRICE)
@@ -434,7 +434,7 @@ class ServeurResourceIT {
         assertThat(testServeur.getArch()).isEqualTo(UPDATED_ARCH);
         assertThat(testServeur.getCpuNombre()).isEqualTo(UPDATED_CPU_NOMBRE);
         assertThat(testServeur.getRam()).isEqualTo(UPDATED_RAM);
-        assertThat(testServeur.getMaxSire()).isEqualTo(UPDATED_MAX_SIRE);
+        assertThat(testServeur.getMaxSize()).isEqualTo(UPDATED_MAX_SIZE);
         assertThat(testServeur.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testServeur.getPriceMonthly()).isEqualTo(UPDATED_PRICE_MONTHLY);
         assertThat(testServeur.getHourlyPrice()).isEqualTo(UPDATED_HOURLY_PRICE);

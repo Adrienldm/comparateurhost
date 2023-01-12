@@ -61,7 +61,7 @@ public class BatchGetAllServeurs {
                 serv.setCpuNombre((Long) obj.get(NCPUS));
             }
             if (obj.containsKey(RAM)) {
-                serv.setRam((Long) obj.get(RAM));
+                serv.setRam((Long) obj.get(RAM) / 1024 / 1024 / 1024);
             }
             if (obj.containsKey(VOLUMES_CONSTRAINT) && ((JSONObject) obj.get(VOLUMES_CONSTRAINT)).containsKey(MAX_SIZE)) {
                 serv.setMaxSize((Long) ((JSONObject) obj.get(VOLUMES_CONSTRAINT)).get(MAX_SIZE));

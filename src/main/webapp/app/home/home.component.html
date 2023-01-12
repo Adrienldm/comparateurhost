@@ -1,79 +1,100 @@
-<div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
-  </div>
-
-  <div class="col-md-9">
-    <h1 class="display-4"><span jhiTranslate="home.title">Bienvenue, Java Hipster !</span> (Archi Cloud)</h1>
-
-    <p class="lead" jhiTranslate="home.subtitle">Ceci est votre page d'accueil</p>
-
-    <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-          >Vous êtes connecté en tant que "{{ account.login }}".</span
-        >
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.authenticated.prefix">Si vous voulez vous </span>
-        <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">connecter</a
-        ><span jhiTranslate="global.messages.info.authenticated.suffix"
-          >, vous pouvez utiliser les comptes par défaut : <br />
-          - Administrateur (nom d'utilisateur="admin" et mot de passe ="admin") <br />
-          - Utilisateur (nom d'utilisateur="user" et mot de passe ="user").</span
-        >
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.register.noaccount">Vous n'avez pas encore de compte ?</span>&nbsp;
-        <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Créer un compte</a>
+<div class="form">
+  <div class="row">
+    <h1 class="display-4">Comparer vos hébergeurs :</h1>
+    <div class="col">
+      Nom de l'hébergeur :<br />
+      <div class="form-outline">
+        <select class="form-select" [(ngModel)]="selectedhebergeur">
+          <!-- <option value="" disabled hidden selected>Nom de l'hébergeurs :</option> -->
+          <option *ngFor="let hebergeur of hebergeursList" [ngValue]="hebergeur">{{ hebergeur }}</option>
+          -
+        </select>
       </div>
     </div>
+    <div class="col">
+      <div class="form-outline">
+        Type d'infrastructure :<br />
+        <select class="form-select" [(ngModel)]="selectedinfra">
+          <option *ngFor="let typeinfra of typesinfra" [ngValue]="typeinfra">{{ typeinfra }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
-    <p jhiTranslate="home.question">Si vous avez des questions à propos de JHipster :</p>
+  <hr />
 
-    <ul>
-      <li>
-        <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.homepage"
-          >Page d'accueil de JHipster</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://stackoverflow.com/tags/jhipster/info"
-          target="_blank"
-          rel="noopener noreferrer"
-          jhiTranslate="home.link.stackoverflow"
-          >JHipster sur Stack Overflow</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/jhipster/generator-jhipster/issues?state=open"
-          target="_blank"
-          rel="noopener noreferrer"
-          jhiTranslate="home.link.bugtracker"
-          >JHipster bug tracker</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.chat"
-          >JHipster public chat room</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.follow"
-          >Suivez @jhipster sur Twitter</a
-        >
-      </li>
-    </ul>
+  <div class="row">
+    <div class="col">
+      <div class="form-outline">
+        Nombre de CPU :<br />
+        <select class="form-select" [(ngModel)]="selectedCPU">
+          <option *ngFor="let nbCpu of nbCpus" [ngValue]="nbCpu">{{ nbCpu }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        Ram :<br />
+        <select class="form-select" [(ngModel)]="selectedRAM">
+          <option *ngFor="let ram of rams" [ngValue]="ram">{{ ram }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
-    <p>
-      <span jhiTranslate="home.like">Si vous aimez JHipster, donnez nous une étoile sur</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github"
-        >GitHub </a
-      >!
-    </p>
+  <hr />
+
+  <div class="row">
+    <div class="col">
+      <div class="form-outline">
+        Type de serveur :<br />
+        <select class="form-select" [(ngModel)]="selectedType">
+          <option *ngFor="let type of types" [ngValue]="type">{{ type }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        Réseau :<br />
+        <select class="form-select" [(ngModel)]="selectedBandWidth">
+          <option *ngFor="let bandWidth of bandWidths" [ngValue]="bandWidth">{{ bandWidth }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="button" class="btn btn-dark" (click)="compare()">Comparer</button>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div id="result-compare">
+    <div class="row result-compare" *ngFor="let serv of serveursCompare">
+      <div class="col">
+        <span><b>Hebergeur : </b>{{ serv.nomHebergeur! }}</span
+        ><br />
+        <span><b>Serveur : </b>{{ serv.nomServeur! }}</span>
+      </div>
+      <div class="col">
+        <span><b>Type d'architechure : </b>{{ serv.arch! }}</span
+        ><br />
+        <span><b>Nombre de CPU : </b>{{ serv.cpuNombre! }}</span>
+      </div>
+      <div class="col">
+        <span><b>Type de serveur : </b>{{ serv.type! }}</span
+        ><br />
+        <span><b>Réseau : </b>{{ serv.bandWidthInternal! }}</span>
+      </div>
+      <div class="col">
+        <span><b>Prix par Heure : </b>{{ serv.hourlyPrice! }}</span
+        ><br />
+        <span><b>Prix par Mois : </b>{{ serv.priceMonthly! }}</span>
+      </div>
+    </div>
   </div>
 </div>

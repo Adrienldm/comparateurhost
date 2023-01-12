@@ -14,3 +14,4 @@ entity Serveur {
     bandWidthExternal Long
 }
 
+filter Serveur

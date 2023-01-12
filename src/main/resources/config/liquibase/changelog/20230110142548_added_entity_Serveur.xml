@@ -86,13 +86,4 @@
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
-
-    <changeSet author="adrien-landemaine" id="20230111111758">
-    <createSequence dataType="int"
-                    incrementBy="1"
-                    minValue="1"
-                    schemaName="public"
-                    sequenceName="seq_serveurs"
-                    startValue="1"/>
-    </changeSet>
 </databaseChangeLog>

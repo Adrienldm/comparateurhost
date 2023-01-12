@@ -2,6 +2,9 @@ package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.Serveur;
 import com.mycompany.myapp.repository.ServeurRepository;
+import com.mycompany.myapp.service.ServeurQueryService;
+import com.mycompany.myapp.service.ServeurService;
+import com.mycompany.myapp.service.criteria.ServeurCriteria;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +24,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api")
-@Transactional
 public class ServeurResource {
 
     private final Logger log = LoggerFactory.getLogger(ServeurResource.class);
@@ -32,10 +33,16 @@ public class ServeurResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final ServeurService serveurService;
+
     private final ServeurRepository serveurRepository;
 
-    public ServeurResource(ServeurRepository serveurRepository) {
+    private final ServeurQueryService serveurQueryService;
+
+    public ServeurResource(ServeurService serveurService, ServeurRepository serveurRepository, ServeurQueryService serveurQueryService) {
+        this.serveurService = serveurService;
         this.serveurRepository = serveurRepository;
+        this.serveurQueryService = serveurQueryService;
     }
 
     /**
@@ -51,7 +58,7 @@ public class ServeurResource {
         if (serveur.getId() != null) {
             throw new BadRequestAlertException("A new serveur cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Serveur result = serveurRepository.save(serveur);
+        Serveur result = serveurService.save(serveur);
         return ResponseEntity
             .created(new URI("/api/serveurs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -83,7 +90,7 @@ public class ServeurResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Serveur result = serveurRepository.save(serveur);
+        Serveur result = serveurService.update(serveur);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, serveur.getId().toString()))
@@ -118,49 +125,7 @@ public class ServeurResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Serveur> result = serveurRepository
-            .findById(serveur.getId())
-            .map(existingServeur -> {
-                if (serveur.getNomHebergeur() != null) {
-                    existingServeur.setNomHebergeur(serveur.getNomHebergeur());
-                }
-                if (serveur.getNomServeur() != null) {
-                    existingServeur.setNomServeur(serveur.getNomServeur());
-                }
-                if (serveur.getArch() != null) {
-                    existingServeur.setArch(serveur.getArch());
-                }
-                if (serveur.getCpuNombre() != null) {
-                    existingServeur.setCpuNombre(serveur.getCpuNombre());
-                }
-                if (serveur.getRam() != null) {
-                    existingServeur.setRam(serveur.getRam());
-                }
-                if (serveur.getMaxSize() != null) {
-                    existingServeur.setMaxSize(serveur.getMaxSize());
-                }
-                if (serveur.getType() != null) {
-                    existingServeur.setType(serveur.getType());
-                }
-                if (serveur.getPriceMonthly() != null) {
-                    existingServeur.setPriceMonthly(serveur.getPriceMonthly());
-                }
-                if (serveur.getHourlyPrice() != null) {
-                    existingServeur.setHourlyPrice(serveur.getHourlyPrice());
-                }
-                if (serveur.getIpv6() != null) {
-                    existingServeur.setIpv6(serveur.getIpv6());
-                }
-                if (serveur.getBandWidthInternal() != null) {
-                    existingServeur.setBandWidthInternal(serveur.getBandWidthInternal());
-                }
-                if (serveur.getBandWidthExternal() != null) {
-                    existingServeur.setBandWidthExternal(serveur.getBandWidthExternal());
-                }
-
-                return existingServeur;
-            })
-            .map(serveurRepository::save);
+        Optional<Serveur> result = serveurService.partialUpdate(serveur);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -171,12 +136,26 @@ public class ServeurResource {
     /**
      * {@code GET  /serveurs} : get all the serveurs.
      *
+     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of serveurs in body.
      */
     @GetMapping("/serveurs")
-    public List<Serveur> getAllServeurs() {
-        log.debug("REST request to get all Serveurs");
-        return serveurRepository.findAll();
+    public ResponseEntity<List<Serveur>> getAllServeurs(ServeurCriteria criteria) {
+        log.debug("REST request to get Serveurs by criteria: {}", criteria);
+        List<Serveur> entityList = serveurQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
+    }
+
+    /**
+     * {@code GET  /serveurs/count} : count all the serveurs.
+     *
+     * @param criteria the criteria which the requested entities should match.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
+     */
+    @GetMapping("/serveurs/count")
+    public ResponseEntity<Long> countServeurs(ServeurCriteria criteria) {
+        log.debug("REST request to count Serveurs by criteria: {}", criteria);
+        return ResponseEntity.ok().body(serveurQueryService.countByCriteria(criteria));
     }
 
     /**
@@ -188,7 +167,7 @@ public class ServeurResource {
     @GetMapping("/serveurs/{id}")
     public ResponseEntity<Serveur> getServeur(@PathVariable Long id) {
         log.debug("REST request to get Serveur : {}", id);
-        Optional<Serveur> serveur = serveurRepository.findById(id);
+        Optional<Serveur> serveur = serveurService.findOne(id);
         return ResponseUtil.wrapOrNotFound(serveur);
     }
 
@@ -201,7 +180,7 @@ public class ServeurResource {
     @DeleteMapping("/serveurs/{id}")
     public ResponseEntity<Void> deleteServeur(@PathVariable Long id) {
         log.debug("REST request to delete Serveur : {}", id);
-        serveurRepository.deleteById(id);
+        serveurService.delete(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
